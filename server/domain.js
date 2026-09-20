@@ -110,7 +110,7 @@ export function eventsFor(date) {
       end: "10:00",
       title: "프로덕트팀 데일리 싱크",
       location: "라운지 · 3F",
-      people: ["김서연", "박지훈", "이우진"],
+      people: ["김서연", "박지훈", "정우진"],
       kind: "team",
     },
     {

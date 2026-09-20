@@ -1,3 +1,5 @@
+import { refreshNetworkBaseline } from "./network-baseline.js";
+import { createRequestCache } from "./request-cache.js";
 import express from "express";
 import dotenv from "dotenv";
 import fs from "node:fs";
@@ -26,6 +28,7 @@ if (!process.env.JEV_KEY && !process.env.TYPESAFE_API_KEY) {
   }
 }
 const key = process.env.JEV_KEY || process.env.TYPESAFE_API_KEY;
+if (key) void refreshNetworkBaseline();
 const dbFile = path.join(
   process.env.DEMO_DATA_DIR || path.join(root, ".data"),
   "demo.json",
@@ -53,21 +56,23 @@ app.get("/api/health", (_, res) =>
     demo: true,
   }),
 );
+const interpretOnce = createRequestCache();
 app.post("/api/interpret", async (req, res, next) => {
   const start = performance.now();
   try {
     const input = z
       .object({
         message: z.string().trim().min(1).max(2000),
+        requestId: z.string().uuid().optional(),
         context: decisionSchema.partial().optional(),
       })
       .parse(req.body);
-    const result = await interpret(
-      input.message,
-      input.context,
-      key,
-      process.env.JEV_MODEL,
+    const original = await interpretOnce(
+      input.requestId,
+      { message: input.message, context: input.context },
+      () => interpret(input.message, input.context, key, process.env.JEV_MODEL),
     );
+    const result = { ...original, trace: { ...original.trace } };
     const spec = makeSpec(result.decision, db);
     result.trace.serverMs = performance.now() - start;
     res.json({ ...result, spec });

@@ -1,3 +1,4 @@
+import { refreshNetworkBaseline, splitTiming } from "./network-baseline.js";
 import { estimateCost } from "./telemetry.js";
 import { decisionSchema, todayISO, addDays, dayLabel } from "./domain.js";
 const choice = (instructions, criteria) => ({
@@ -143,6 +144,7 @@ export async function interpret(
       ),
       { status: 503 },
     );
+  void refreshNetworkBaseline();
   const today = todayISO(),
     questions = buildQuestions(today),
     start = performance.now();
@@ -222,11 +224,13 @@ export async function interpret(
   resolve("leaveKind", "leave", "full");
   const decision = decisionSchema.parse(chosen);
   if (decision.service === "llm") decision.secondary = "none";
+  const latencyMs = performance.now() - start;
   return {
     decision,
     trace: {
       engine: data.model || model,
-      latencyMs: Math.round(performance.now() - start),
+      latencyMs: Math.round(latencyMs),
+      timingEstimate: splitTiming(latencyMs),
       usage: data.usage,
       cost: estimateCost(data.usage, data.model || model),
       answers: data.answers,

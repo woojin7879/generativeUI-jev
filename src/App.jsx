@@ -141,12 +141,38 @@ function Message({
               </fieldset>
             </div>
             <div className="response-meta">
-              <span className="engine-dot" />
-              {message.trace?.engine === "direct" ? "직접 선택" : "JEV 판단"}
-              <span>·</span>
-              {message.trace?.engine === "direct"
-                ? "모델 호출 없음"
-                : `${((message.trace?.totalMs ?? message.trace?.latencyMs ?? 0) / 1000).toFixed(2)}s`}
+              <span className="response-origin">
+                <span className="engine-dot" />
+                {message.trace?.engine === "direct" ? "직접 선택" : "JEV"}
+              </span>
+              <span className="response-stat">
+                총{" "}
+                {message.trace?.totalMs == null
+                  ? "—"
+                  : Math.round(message.trace.totalMs) + "ms"}{" "}
+                (판단{" "}
+                {message.trace?.engine === "direct"
+                  ? "0ms · 호출 없음"
+                  : message.trace?.timingEstimate?.processingMs == null
+                    ? "추정 불가"
+                    : "약 " +
+                      Math.round(message.trace.timingEstimate.processingMs) +
+                      "ms"}
+                )
+              </span>
+              <span
+                className="response-stat"
+                title="요청별 예상 비용 · 기준 환율과 계산 방식은 처리 과정에서 확인"
+              >
+                예상{" "}
+                {message.trace?.cost?.usd == null
+                  ? "$ —"
+                  : "$" + message.trace.cost.usd.toFixed(8)}
+                {" / "}
+                {message.trace?.cost?.krw == null
+                  ? "₩ —"
+                  : "₩" + message.trace.cost.krw.toFixed(4)}
+              </span>
               <button onClick={() => onInspect(message)}>
                 <Code2 size={12} /> 처리 과정
               </button>
@@ -176,7 +202,9 @@ export default function App() {
   const inputRef = useRef(null),
     endRef = useRef(null),
     activeRef = useRef(null),
-    busyRef = useRef(false);
+    busyRef = useRef(false),
+    scrollSessionRef = useRef(undefined),
+    inputValueRef = useRef("");
   const today =
     health?.today ||
     new Intl.DateTimeFormat("en-CA", { timeZone: "Asia/Seoul" }).format(
@@ -206,8 +234,13 @@ export default function App() {
     } catch {}
   }, [activeId]);
   useEffect(() => {
-    endRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
-  }, [messages.length, busy]);
+    const restored = scrollSessionRef.current !== activeId;
+    endRef.current?.scrollIntoView({
+      behavior: restored ? "instant" : "smooth",
+      block: "end",
+    });
+    scrollSessionRef.current = activeId;
+  }, [activeId, messages.length, busy]);
   useEffect(() => {
     const handler = (e) => {
       if ((e.metaKey || e.ctrlKey) && e.key === "k") {
@@ -225,6 +258,7 @@ export default function App() {
   function newChat() {
     if (busyRef.current) return;
     setActiveId(null);
+    inputValueRef.current = "";
     activeRef.current = null;
     setInput("");
     setInspect(null);
@@ -260,11 +294,12 @@ export default function App() {
     }
     return id;
   }
-  async function send(text = input, direct = null) {
+  async function send(text = inputValueRef.current, direct = null) {
     text = text.trim();
     if (!text || busyRef.current) return;
     busyRef.current = true;
     setBusy(true);
+    inputValueRef.current = "";
     setInput("");
     const sid = ensureSession(text);
     const user = { id: crypto.randomUUID(), role: "user", text };
@@ -279,6 +314,7 @@ export default function App() {
         direct ? "/api/view" : "/api/interpret",
         direct || {
           message: text,
+          requestId: user.id,
           context:
             last?.decision?.service === "leave" && last.draft
               ? {
@@ -483,7 +519,7 @@ export default function App() {
           <div className="profile">
             <span className="avatar">우</span>
             <div>
-              <strong>이우진</strong>
+              <strong>정우진</strong>
               <span>프로덕트팀 · 프론트엔드</span>
             </div>
             <span className="profile-status" title="데모 사용자" />
@@ -646,12 +682,17 @@ export default function App() {
               aria-label="모아에게 메시지 보내기"
               placeholder="모아에게 물어보세요. ‘오늘 점심 뭐 나와?’"
               rows={1}
-              onChange={(e) => setInput(e.target.value)}
+              onChange={(e) => {
+                inputValueRef.current = e.target.value;
+                setInput(e.target.value);
+              }}
               onKeyDown={(e) => {
                 if (
                   e.key === "Enter" &&
                   !e.shiftKey &&
-                  !e.nativeEvent.isComposing
+                  !e.nativeEvent.isComposing &&
+                  e.nativeEvent.keyCode !== 229 &&
+                  !e.repeat
                 ) {
                   e.preventDefault();
                   send();
@@ -758,6 +799,30 @@ export default function App() {
                 </dd>
               </div>
               <div>
+                <dt>판단·처리 시간 · 추정</dt>
+                <dd>
+                  {inspect.trace?.timingEstimate?.processingMs == null
+                    ? "추정 불가"
+                    : `${Math.round(inspect.trace.timingEstimate.processingMs)} ms`}
+                </dd>
+              </div>
+              <div>
+                <dt>네트워크 지연 · 앱 왕복 추정</dt>
+                <dd>
+                  {inspect.trace?.appNetworkMs == null
+                    ? "—"
+                    : `${Math.round(inspect.trace.appNetworkMs)} ms`}
+                </dd>
+              </div>
+              <div>
+                <dt>네트워크 지연 · JEV 왕복 추정</dt>
+                <dd>
+                  {inspect.trace?.timingEstimate?.networkMs == null
+                    ? "측정값 없음"
+                    : `${Math.round(inspect.trace.timingEstimate.networkMs)} ms`}
+                </dd>
+              </div>
+              <div>
                 <dt>JEV 왕복 · 네트워크 + 판단</dt>
                 <dd>{inspect.trace?.latencyMs ?? "—"} ms</dd>
               </div>
@@ -811,6 +876,26 @@ export default function App() {
                 </a>
               </p>
             )}
+            <p>
+              앱 왕복 추정은 전체 응답에서 앱 서버 처리 시간을 뺀 값으로,
+              브라우저·직렬화 오버헤드도 포함합니다. 서버↔JEV의 네트워크 시간은
+              포함하지 않습니다.
+            </p>
+            {inspect.trace?.timingEstimate && (
+              <p>
+                인증 없는 동일 API 요청 3회의 401/403 응답 시간 중앙값을
+                네트워크 기준으로 사용합니다. 기준{" "}
+                {new Date(
+                  inspect.trace.timingEstimate.baseline.measuredAt,
+                ).toLocaleTimeString("ko-KR")}{" "}
+                · 최대 5분 재사용. 판단·처리 추정 = JEV 왕복 − 기준값. 인증
+                처리·대기열·연결 상태 차이가 포함되어 순수 모델 실행 시간과
+                다릅니다.
+                {inspect.trace.timingEstimate.status ===
+                  "baseline-exceeds-request" &&
+                  " 기준값이 실제 요청보다 커서 판단 시간 추정을 표시하지 않습니다."}
+              </p>
+            )}
             <h3>의미 판단 결과</h3>
             <pre>{JSON.stringify(inspect.decision, null, 2)}</pre>
             <details>
@@ -825,8 +910,8 @@ export default function App() {
               자연어 판단은 JEV가, 데이터 조회와 UI 구성은 코드가 처리합니다.
               전체 응답은 브라우저 요청부터 응답 해석까지, JEV 왕복은 서버에서
               JEV 요청부터 응답 검증까지의 실측값입니다. 두 값은 포함 관계이며
-              더하지 않습니다. 순수 네트워크 지연과 모델 판단 시간은 API에서
-              별도로 제공하지 않아 분리하지 않습니다.
+              더하지 않습니다. 순수 모델 판단 시간은 API에서 제공하지 않습니다.
+              위 시간 분리는 인증 실패 기준값을 이용한 추정입니다.
             </p>
           </aside>
         </div>

@@ -14,6 +14,7 @@ test("demo actions validate, reserve balances, reject duplicates, and cancel", a
       ...process.env,
       PORT: String(port),
       NODE_ENV: "production",
+      JEV_NETWORK_PROBE: "0",
       DEMO_DATA_DIR: dir,
     },
     stdio: "ignore",

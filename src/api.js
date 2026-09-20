@@ -8,7 +8,12 @@ export async function api(url, body) {
   });
   const data = await res.json();
   if (!res.ok) throw new Error(data.error || "연결에 실패했어요.");
-  if (data.trace) data.trace.totalMs = performance.now() - start;
+  if (data.trace) {
+    data.trace.totalMs = performance.now() - start;
+    data.trace.appNetworkMs = Number.isFinite(data.trace.serverMs)
+      ? Math.max(0, data.trace.totalMs - data.trace.serverMs)
+      : null;
+  }
   return data;
 }
 export const defaults = (date) => ({

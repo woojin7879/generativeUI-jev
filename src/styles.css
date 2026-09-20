@@ -1090,10 +1090,12 @@ a {
 }
 .response-meta {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 6px;
-  font-size: 9px;
-  color: var(--color-soft);
+  gap: 8px 12px;
+  font-size: 11px;
+  line-height: 1.6;
+  color: var(--color-muted);
   padding: 12px 1px;
 }
 .response-meta button {
@@ -2195,4 +2197,13 @@ a {
   .balance-actions {
     padding: 0 18px 20px;
   }
+}
+
+.response-origin {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.response-stat {
+  font-variant-numeric: tabular-nums;
 }
