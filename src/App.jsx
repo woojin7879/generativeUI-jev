@@ -255,6 +255,30 @@ export default function App() {
     window.addEventListener("keydown", handler);
     return () => window.removeEventListener("keydown", handler);
   }, []);
+  const urlInitRef = useRef(false);
+  useEffect(() => {
+    if (urlInitRef.current) return;
+    urlInitRef.current = true;
+    const sp = new URLSearchParams(window.location.search);
+    const q = sp.get("q");
+    const preview = sp.get("preview");
+    const inspectParam = sp.get("inspect");
+    if (preview === "home") {
+      setActiveId(null);
+      activeRef.current = null;
+      return;
+    }
+    if (q) {
+      setActiveId(null);
+      activeRef.current = null;
+      send(q).then((msg) => {
+        if (inspectParam && msg) {
+          setInspect(msg);
+        }
+      });
+    }
+  }, [today]);
+
   function newChat() {
     if (busyRef.current) return;
     setActiveId(null);
@@ -347,6 +371,7 @@ export default function App() {
           s.id === sid ? { ...s, messages: [...s.messages, message] } : s,
         ),
       );
+      return message;
     } catch (e) {
       setSessions((ss) =>
         ss.map((s) =>

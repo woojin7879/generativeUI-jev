@@ -4,30 +4,30 @@
 
 ## 문장에 따라 달라지는 UI
 
-| 예시 문장 | 선택된 UI | 화면 차이 |
-| --- | --- | --- |
-| 점심메뉴 | MealSingleCard · lunch | 점심 한 끼의 메뉴와 영양 정보 |
-| 오늘 저녁 메뉴 / 석식 뭐 나와? | MealSingleCard · dinner | 저녁 한 끼와 달 아이콘, 저녁 데이터 |
-| 점심 말고 저녁 메뉴 | MealSingleCard · dinner | 부정된 점심을 제외하고 저녁 표시 |
-| 아침 메뉴 보여줘 | MealSingleCard · breakfast | 아침 한 끼 |
-| 전체메뉴 | MealDayCard | 아침·점심·저녁 세 행 |
-| 이번 주 저녁 식단 | MealWeekCard | 날짜별 저녁 메뉴 목록 |
-| 오늘 일정 | ScheduleDayCard | 하루 타임라인, 일정 펼치기 |
-| 이번 주 전체 일정 | ScheduleWeekCard | 날짜별 일정 그룹 |
-| 오늘 날씨 | WeatherOverviewCard | 날씨 요약, 여러 지표와 시간대 정보 |
-| 오늘 온도 | WeatherMetricCard · temperature | 온도를 큰 숫자로 표시 |
-| 오늘 습도 | WeatherMetricCard · humidity | 습도를 큰 숫자로 표시 |
-| 이번 주 날씨 | WeatherWeekCard | 날짜별 예보 |
-| 휴가신청 | LeaveApplicationCard | 날짜·종류·사유 입력 → 검토 → 확정 |
-| 잔여휴가일수 / 내 연차 얼마나 남았어? | LeaveBalanceCard | 큰 잔여 일수, 부여·사용·대기 수치. 신청 폼 없음 |
-| 신청 내역 보여줘 / 휴가 신청한 거 취소하고 싶어 | LeaveHistoryCard | 제출 내역·상태·취소 버튼 |
-| 오후 반차 신청할게 | LeaveApplicationCard · pm | 오후 반차가 선택된 폼 |
-| 내일 회의실 예약 | RoomBookingCard | 날짜, 회의실별 빈 시간 선택과 예약 |
-| 사내 공지 보여줘 | NoticeListCard | 제목 목록과 본문 펼치기 |
-| 자바스크립트 Promise 설명해줘 | LLMHandoffCard | 사내 LLM으로 라우팅됨 · 미연결 |
-| 오늘 점심이랑 일정 같이 보여줘 | PortalStack | 식단 카드 + 일정 카드 조합 |
+| 예시 문장 | 선택된 UI | 화면 차이 | 스크린샷 |
+| --- | --- | --- | --- |
+| 점심메뉴 / 오늘 점심 뭐 나와? | MealSingleCard · lunch | 점심 한 끼의 메뉴와 영양 정보 | [보기](./docs/screenshots/01_meal_lunch.png) |
+| 오늘 저녁 메뉴 / 석식 뭐 나와? | MealSingleCard · dinner | 저녁 한 끼와 달 아이콘, 저녁 데이터 | [보기](./docs/screenshots/02_meal_dinner.png) |
+| 점심 말고 저녁 메뉴 | MealSingleCard · dinner | 부정된 점심을 제외하고 저녁 표시 | [보기](./docs/screenshots/02_meal_dinner.png) |
+| 아침 메뉴 보여줘 | MealSingleCard · breakfast | 아침 한 끼 | [보기](./docs/screenshots/01_meal_lunch.png) |
+| 전체메뉴 / 점심 말고 전체 메뉴 보여줘 | MealDayCard | 아침·점심·저녁 세 행 | [보기](./docs/screenshots/03_meal_day_all.png) |
+| 이번 주 저녁 식단 / 이번 주 식단 보여줘 | MealWeekCard | 날짜별 저녁/점심 메뉴 목록 | [보기](./docs/screenshots/04_meal_week.png) |
+| 오늘 일정 / 오늘 일정 보여줘 | ScheduleDayCard | 하루 타임라인, 일정 펼치기 | [보기](./docs/screenshots/05_schedule_today.png) |
+| 이번 주 전체 일정 | ScheduleWeekCard | 날짜별 일정 그룹 | [보기](./docs/screenshots/06_schedule_week.png) |
+| 오늘 날씨 / 오늘 날씨 알려줘 | WeatherOverviewCard | 날씨 요약, 여러 지표와 시간대 정보 | [보기](./docs/screenshots/07_weather_today.png) |
+| 오늘 온도 | WeatherMetricCard · temperature | 온도를 큰 숫자로 표시 | [보기](./docs/screenshots/08_weather_metric.png) |
+| 오늘 습도 / 오늘 습도만 알려줘 | WeatherMetricCard · humidity | 습도를 큰 숫자로 표시 | [보기](./docs/screenshots/08_weather_metric.png) |
+| 이번 주 날씨 | WeatherWeekCard | 날짜별 예보 | [보기](./docs/screenshots/09_weather_week.png) |
+| 휴가신청 / 금요일 오후 반차 쓰고 싶어 | LeaveApplicationCard | 날짜·종류·사유 입력 → 검토 → 확정 | [보기](./docs/screenshots/10_leave_application.png) |
+| 잔여휴가일수 / 내 연차 얼마나 남았어? | LeaveBalanceCard | 큰 잔여 일수, 부여·사용·대기 수치. 신청 폼 없음 | [보기](./docs/screenshots/11_leave_balance.png) |
+| 신청 내역 보여줘 / 휴가 신청한 거 취소하고 싶어 | LeaveHistoryCard | 제출 내역·상태·취소 버튼 | [보기](./docs/screenshots/12_leave_history.png) |
+| 오후 반차 신청할게 | LeaveApplicationCard · pm | 오후 반차가 선택된 폼 | [보기](./docs/screenshots/10_leave_application.png) |
+| 내일 회의실 예약 | RoomBookingCard | 날짜, 회의실별 빈 시간 선택과 예약 | [보기](./docs/screenshots/13_room_booking.png) |
+| 사내 공지 보여줘 / 최근 사내 공지 보여줘 | NoticeListCard | 제목 목록과 본문 펼치기 | [보기](./docs/screenshots/14_notices.png) |
+| 자바스크립트 Promise 설명해줘 / 파이썬으로 정렬 함수 | LLMHandoffCard | 사내 LLM으로 라우팅됨 · 미연결 | [보기](./docs/screenshots/15_llm_handoff.png) |
+| 오늘 점심이랑 일정 같이 보여줘 | PortalStack | 식단 카드 + 일정 카드 조합 | [보기](./docs/screenshots/16_composite_portal.png) |
 
-같은 레이아웃을 재사용하는 점심/저녁은 데이터와 제목이 달라진다. 휴가 신청/잔여/내역은 별도 컴포넌트로 분리되어 입력 폼과 조회 화면이 구분된다.
+같은 레이아웃을 재사용하는 점심/저녁은 데이터와 제목이 달라진다. 휴가 신청/잔여/내역은 별도 컴포넌트로 분리되어 입력 폼과 조회 화면이 구분된다. 전체 화면 이미지는 [`docs/screenshots/`](./docs/screenshots/)에서 확인할 수 있다.
 
 ## 조합 전 컴포넌트 구성
 

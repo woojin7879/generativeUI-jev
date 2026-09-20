@@ -34,6 +34,59 @@ npm run test:live # 개발 서버 실행 및 유효한 JEV 키 필요; 실제 AP
 
 각 자연어 요청마다 사용자 말풍선과 별도의 인터랙티브 답변 카드가 추가됩니다. 기존 카드의 탭과 날짜 선택기는 모델 호출 없이 즉시 바뀌며, 최신 카드의 선택 결과가 후속 자연어 요청에 전달됩니다. 휴가 폼의 작성 사유도 같은 업무의 후속 요청으로 이어집니다. 카드 아래 `처리 과정`에서 네트워크 + 판단을 포함한 응답 시간, USD·원화 예상 비용, JEV 답변, 토큰 사용량, json-render Spec을 볼 수 있습니다.
 
+## 주요 기능별 화면
+
+모든 화면은 실제 JEV 판단 및 실시간 데이터가 연동된 전체 화면 캡처이며, 이미지 원본은 [`docs/screenshots/`](./docs/screenshots) 디렉터리에 정리되어 있습니다.
+
+### 1. 메인 대시보드
+개인 맞춤 환영 메시지, 업무별 바로가기 퀵 그리드, 추천 질문 및 최신 사내 공지 알림이 표시됩니다.
+![메인 대시보드](./docs/screenshots/00_main_dashboard.png)
+
+### 2. 구내식당 식단 관리
+단일 끼니(점심/저녁), 하루 전체 식단(조식·중식·석식), 주간 요일별 식단표를 지원합니다.
+| 오늘 점심 식단 (`MealSingleCard`) | 하루 전체 식단 (`MealDayCard`) |
+| :---: | :---: |
+| ![오늘 점심](./docs/screenshots/01_meal_lunch.png) | ![하루 전체 식단](./docs/screenshots/03_meal_day_all.png) |
+
+| 오늘 저녁 식단 (`MealSingleCard`) | 주간 식단표 (`MealWeekCard`) |
+| :---: | :---: |
+| ![오늘 저녁](./docs/screenshots/02_meal_dinner.png) | ![주간 식단](./docs/screenshots/04_meal_week.png) |
+
+### 3. 나의 일정 관리
+시간대별 일정 타임라인 및 참석자/장소 상세 펼치기, 주간 전체 일정 그룹 보기를 제공합니다.
+| 오늘 일정 타임라인 (`ScheduleDayCard`) | 이번 주 전체 일정 (`ScheduleWeekCard`) |
+| :---: | :---: |
+| ![오늘 일정](./docs/screenshots/05_schedule_today.png) | ![이번 주 일정](./docs/screenshots/06_schedule_week.png) |
+
+### 4. 사내 오피스 날씨
+현재 기온과 시간대별 예보, 특정 지표(습도 등) 강조 뷰, 주간 날씨 예보를 제공합니다.
+| 종합 날씨 요약 (`WeatherOverviewCard`) | 단일 지표 습도 (`WeatherMetricCard`) | 이번 주 날씨 예보 (`WeatherWeekCard`) |
+| :---: | :---: | :---: |
+| ![오늘 날씨](./docs/screenshots/07_weather_today.png) | ![습도 지표](./docs/screenshots/08_weather_metric.png) | ![주간 날씨](./docs/screenshots/09_weather_week.png) |
+
+### 5. 휴가 신청 및 연차 관리
+자연어 요청(예: "금요일 오후 반차 쓰고 싶어")에 맞춰 날짜와 휴가 종류가 자동 채워진 신청 폼, 잔여 연차 시각화, 신청 이력 조회 및 취소 기능을 제공합니다.
+| 휴가 신청 폼 (`LeaveApplicationCard`) | 잔여 연차 조회 (`LeaveBalanceCard`) | 신청 이력 및 취소 (`LeaveHistoryCard`) |
+| :---: | :---: | :---: |
+| ![휴가 신청 폼](./docs/screenshots/10_leave_application.png) | ![잔여 연차](./docs/screenshots/11_leave_balance.png) | ![신청 내역](./docs/screenshots/12_leave_history.png) |
+
+### 6. 회의실 예약 및 사내 공지
+회의실별(오리온, 시리우스, 루나) 잔여 시간 슬롯 예약 및 주요 사내 공지사항 상세 아코디언 조회를 지원합니다.
+| 회의실 예약 (`RoomBookingCard`) | 사내 공지사항 (`NoticeListCard`) |
+| :---: | :---: |
+| ![회의실 예약](./docs/screenshots/13_room_booking.png) | ![사내 공지](./docs/screenshots/14_notices.png) |
+
+### 7. 사내 LLM 라우팅 및 복합 카드 조합
+- **사내 LLM 라우팅**: 코딩, 일반 상식 등 업무 포털 범위 밖 질문은 불필요한 LLM 비용 발생 없이 안전하게 사내 LLM 안내 카드로 분기합니다.
+- **복합 요청 처리**: "오늘 점심이랑 일정 같이 보여줘"처럼 여러 업무를 동시에 물어보면 두 개의 카드가 하나의 스택으로 조합되어 표시됩니다.
+| 사내 LLM 라우팅 (`LLMHandoffCard`) | 복합 업무 요청 (`PortalStack`) |
+| :---: | :---: |
+| ![LLM 라우팅](./docs/screenshots/15_llm_handoff.png) | ![복합 요청](./docs/screenshots/16_composite_portal.png) |
+
+### 8. 투명한 처리 과정 인스펙터
+카드 하단 `처리 과정` 버튼 클릭 시 JEV 응답 시간, 네트워크 지연 추정, 토큰 사용량, 예상 비용(USD/KRW), JEV의 의미 판단 결과 JSON 및 json-render Spec을 서랍 패널에서 투명하게 확인 가능합니다.
+![처리 과정 인스펙터](./docs/screenshots/17_trace_inspector.png)
+
 ## 구조
 
 ```text
