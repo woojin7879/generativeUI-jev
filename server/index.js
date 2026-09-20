@@ -10,23 +10,6 @@ import { interpret } from "./jev.js";
 import { makeSpec, decisionSchema, todayISO, rooms } from "./domain.js";
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 dotenv.config({ path: path.join(root, ".env"), quiet: true });
-// Reuse the existing workspace's TypeSafe credential without exposing it to the browser.
-if (!process.env.JEV_KEY && !process.env.TYPESAFE_API_KEY) {
-  for (const dir of [
-    "project3-vibe-radar",
-    "project2-smart-sidekick",
-    "project1",
-  ]) {
-    const file = path.resolve(root, "..", dir, ".env");
-    if (fs.existsSync(file)) {
-      const env = dotenv.parse(fs.readFileSync(file));
-      if (env.JEV_KEY || env.TYPESAFE_API_KEY) {
-        process.env.JEV_KEY = env.JEV_KEY || env.TYPESAFE_API_KEY;
-        break;
-      }
-    }
-  }
-}
 const key = process.env.JEV_KEY || process.env.TYPESAFE_API_KEY;
 if (key) void refreshNetworkBaseline();
 const dbFile = path.join(

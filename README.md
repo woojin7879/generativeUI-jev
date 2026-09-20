@@ -11,7 +11,7 @@ cp .env.example .env
 npm run dev
 ```
 
-http://localhost:3004 에서 확인합니다. 이 워크스페이스에서는 키가 없을 때 기존 project3 → project2 → project1의 `.env`에서 JEV_KEY 또는 TYPESAFE_API_KEY만 읽습니다. 키는 서버에서만 사용하며 복사하거나 클라이언트에 전달하지 않습니다. 새 환경에서는 자체 `.env`를 사용하세요.
+http://localhost:3004 에서 확인합니다. API 키는 서버 환경변수(`.env`)에서만 사용하며 브라우저 클라이언트에는 전달되지 않습니다.
 
 ```sh
 npm run build
