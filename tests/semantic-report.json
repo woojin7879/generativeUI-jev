@@ -1,0 +1,812 @@
+{
+  "date": "2026-09-20T15:32:09.187Z",
+  "passed": 30,
+  "total": 30,
+  "results": [
+    {
+      "message": "점심메뉴",
+      "context": null,
+      "expected": {
+        "service": "meals",
+        "meal": "lunch"
+      },
+      "expectedComponent": "MealSingleCard",
+      "actual": {
+        "service": "meals",
+        "secondary": "none",
+        "scope": "day",
+        "date": "2026-09-21",
+        "meal": "lunch",
+        "metric": "all",
+        "leaveView": "apply",
+        "leaveKind": "full"
+      },
+      "component": "MealSingleCard",
+      "latencyMs": 680,
+      "passed": true
+    },
+    {
+      "message": "오늘 저녁 메뉴",
+      "context": null,
+      "expected": {
+        "service": "meals",
+        "meal": "dinner"
+      },
+      "expectedComponent": "MealSingleCard",
+      "actual": {
+        "service": "meals",
+        "secondary": "none",
+        "scope": "day",
+        "date": "2026-09-21",
+        "meal": "dinner",
+        "metric": "all",
+        "leaveView": "apply",
+        "leaveKind": "full"
+      },
+      "component": "MealSingleCard",
+      "latencyMs": 301,
+      "passed": true
+    },
+    {
+      "message": "저녁은?",
+      "context": {
+        "service": "meals",
+        "secondary": "none",
+        "scope": "day",
+        "date": "2026-09-21",
+        "meal": "lunch",
+        "metric": "all",
+        "leaveView": "apply",
+        "leaveKind": "full"
+      },
+      "expected": {
+        "service": "meals",
+        "meal": "dinner"
+      },
+      "expectedComponent": "MealSingleCard",
+      "actual": {
+        "service": "meals",
+        "secondary": "none",
+        "scope": "day",
+        "date": "2026-09-21",
+        "meal": "dinner",
+        "metric": "all",
+        "leaveView": "apply",
+        "leaveKind": "full"
+      },
+      "component": "MealSingleCard",
+      "latencyMs": 309,
+      "passed": true
+    },
+    {
+      "message": "점심 말고 저녁 메뉴",
+      "context": {
+        "service": "meals",
+        "secondary": "none",
+        "scope": "day",
+        "date": "2026-09-21",
+        "meal": "lunch",
+        "metric": "all",
+        "leaveView": "apply",
+        "leaveKind": "full"
+      },
+      "expected": {
+        "service": "meals",
+        "meal": "dinner"
+      },
+      "expectedComponent": "MealSingleCard",
+      "actual": {
+        "service": "meals",
+        "secondary": "none",
+        "scope": "day",
+        "date": "2026-09-21",
+        "meal": "dinner",
+        "metric": "all",
+        "leaveView": "apply",
+        "leaveKind": "full"
+      },
+      "component": "MealSingleCard",
+      "latencyMs": 268,
+      "passed": true
+    },
+    {
+      "message": "저녁 말고 점심 보여줘",
+      "context": {
+        "service": "meals",
+        "secondary": "none",
+        "scope": "day",
+        "date": "2026-09-21",
+        "meal": "dinner",
+        "metric": "all",
+        "leaveView": "apply",
+        "leaveKind": "full"
+      },
+      "expected": {
+        "service": "meals",
+        "meal": "lunch"
+      },
+      "expectedComponent": "MealSingleCard",
+      "actual": {
+        "service": "meals",
+        "secondary": "none",
+        "scope": "day",
+        "date": "2026-09-21",
+        "meal": "lunch",
+        "metric": "all",
+        "leaveView": "apply",
+        "leaveKind": "full"
+      },
+      "component": "MealSingleCard",
+      "latencyMs": 247,
+      "passed": true
+    },
+    {
+      "message": "내일은?",
+      "context": {
+        "service": "meals",
+        "secondary": "none",
+        "scope": "day",
+        "date": "2026-09-21",
+        "meal": "dinner",
+        "metric": "all",
+        "leaveView": "apply",
+        "leaveKind": "full"
+      },
+      "expected": {
+        "service": "meals",
+        "meal": "dinner"
+      },
+      "expectedComponent": "MealSingleCard",
+      "actual": {
+        "service": "meals",
+        "secondary": "none",
+        "scope": "day",
+        "date": "2026-09-22",
+        "meal": "dinner",
+        "metric": "all",
+        "leaveView": "apply",
+        "leaveKind": "full"
+      },
+      "component": "MealSingleCard",
+      "latencyMs": 340,
+      "passed": true
+    },
+    {
+      "message": "아침 메뉴 보여줘",
+      "context": null,
+      "expected": {
+        "service": "meals",
+        "meal": "breakfast"
+      },
+      "expectedComponent": "MealSingleCard",
+      "actual": {
+        "service": "meals",
+        "secondary": "none",
+        "scope": "day",
+        "date": "2026-09-21",
+        "meal": "breakfast",
+        "metric": "all",
+        "leaveView": "apply",
+        "leaveKind": "full"
+      },
+      "component": "MealSingleCard",
+      "latencyMs": 326,
+      "passed": true
+    },
+    {
+      "message": "석식 뭐 나와?",
+      "context": null,
+      "expected": {
+        "service": "meals",
+        "meal": "dinner"
+      },
+      "expectedComponent": "MealSingleCard",
+      "actual": {
+        "service": "meals",
+        "secondary": "none",
+        "scope": "day",
+        "date": "2026-09-21",
+        "meal": "dinner",
+        "metric": "all",
+        "leaveView": "apply",
+        "leaveKind": "full"
+      },
+      "component": "MealSingleCard",
+      "latencyMs": 285,
+      "passed": true
+    },
+    {
+      "message": "전체메뉴",
+      "context": {
+        "service": "meals",
+        "secondary": "none",
+        "scope": "day",
+        "date": "2026-09-21",
+        "meal": "dinner",
+        "metric": "all",
+        "leaveView": "apply",
+        "leaveKind": "full"
+      },
+      "expected": {
+        "service": "meals",
+        "meal": "all",
+        "scope": "day"
+      },
+      "expectedComponent": "MealDayCard",
+      "actual": {
+        "service": "meals",
+        "secondary": "none",
+        "scope": "day",
+        "date": "2026-09-21",
+        "meal": "all",
+        "metric": "all",
+        "leaveView": "apply",
+        "leaveKind": "full"
+      },
+      "component": "MealDayCard",
+      "latencyMs": 298,
+      "passed": true
+    },
+    {
+      "message": "이번 주 저녁 식단",
+      "context": null,
+      "expected": {
+        "service": "meals",
+        "meal": "dinner",
+        "scope": "week"
+      },
+      "expectedComponent": "MealWeekCard",
+      "actual": {
+        "service": "meals",
+        "secondary": "none",
+        "scope": "week",
+        "date": "2026-09-21",
+        "meal": "dinner",
+        "metric": "all",
+        "leaveView": "apply",
+        "leaveKind": "full"
+      },
+      "component": "MealWeekCard",
+      "latencyMs": 255,
+      "passed": true
+    },
+    {
+      "message": "잔여휴가일수",
+      "context": null,
+      "expected": {
+        "service": "leave",
+        "leaveView": "balance"
+      },
+      "expectedComponent": "LeaveBalanceCard",
+      "actual": {
+        "service": "leave",
+        "secondary": "none",
+        "scope": "day",
+        "date": "2026-09-21",
+        "meal": "lunch",
+        "metric": "all",
+        "leaveView": "balance",
+        "leaveKind": "full"
+      },
+      "component": "LeaveBalanceCard",
+      "latencyMs": 239,
+      "passed": true
+    },
+    {
+      "message": "휴가신청",
+      "context": {
+        "service": "leave",
+        "secondary": "none",
+        "scope": "day",
+        "date": "2026-09-21",
+        "meal": "lunch",
+        "metric": "all",
+        "leaveView": "balance",
+        "leaveKind": "full"
+      },
+      "expected": {
+        "service": "leave",
+        "leaveView": "apply"
+      },
+      "expectedComponent": "LeaveApplicationCard",
+      "actual": {
+        "service": "leave",
+        "secondary": "none",
+        "scope": "day",
+        "date": "2026-09-21",
+        "meal": "lunch",
+        "metric": "all",
+        "leaveView": "apply",
+        "leaveKind": "full"
+      },
+      "component": "LeaveApplicationCard",
+      "latencyMs": 325,
+      "passed": true
+    },
+    {
+      "message": "잔여휴가일수",
+      "context": {
+        "service": "leave",
+        "secondary": "none",
+        "scope": "day",
+        "date": "2026-09-21",
+        "meal": "lunch",
+        "metric": "all",
+        "leaveView": "apply",
+        "leaveKind": "full"
+      },
+      "expected": {
+        "service": "leave",
+        "leaveView": "balance"
+      },
+      "expectedComponent": "LeaveBalanceCard",
+      "actual": {
+        "service": "leave",
+        "secondary": "none",
+        "scope": "day",
+        "date": "2026-09-21",
+        "meal": "lunch",
+        "metric": "all",
+        "leaveView": "balance",
+        "leaveKind": "full"
+      },
+      "component": "LeaveBalanceCard",
+      "latencyMs": 284,
+      "passed": true
+    },
+    {
+      "message": "신청 말고 며칠 남았는지",
+      "context": {
+        "service": "leave",
+        "secondary": "none",
+        "scope": "day",
+        "date": "2026-09-21",
+        "meal": "lunch",
+        "metric": "all",
+        "leaveView": "apply",
+        "leaveKind": "full"
+      },
+      "expected": {
+        "service": "leave",
+        "leaveView": "balance"
+      },
+      "expectedComponent": "LeaveBalanceCard",
+      "actual": {
+        "service": "leave",
+        "secondary": "none",
+        "scope": "day",
+        "date": "2026-09-21",
+        "meal": "lunch",
+        "metric": "all",
+        "leaveView": "balance",
+        "leaveKind": "full"
+      },
+      "component": "LeaveBalanceCard",
+      "latencyMs": 285,
+      "passed": true
+    },
+    {
+      "message": "잔여일수 말고 신청할래",
+      "context": {
+        "service": "leave",
+        "secondary": "none",
+        "scope": "day",
+        "date": "2026-09-21",
+        "meal": "lunch",
+        "metric": "all",
+        "leaveView": "balance",
+        "leaveKind": "full"
+      },
+      "expected": {
+        "service": "leave",
+        "leaveView": "apply"
+      },
+      "expectedComponent": "LeaveApplicationCard",
+      "actual": {
+        "service": "leave",
+        "secondary": "none",
+        "scope": "day",
+        "date": "2026-09-21",
+        "meal": "lunch",
+        "metric": "all",
+        "leaveView": "apply",
+        "leaveKind": "full"
+      },
+      "component": "LeaveApplicationCard",
+      "latencyMs": 260,
+      "passed": true
+    },
+    {
+      "message": "내 연차 얼마나 남았어?",
+      "context": null,
+      "expected": {
+        "service": "leave",
+        "leaveView": "balance"
+      },
+      "expectedComponent": "LeaveBalanceCard",
+      "actual": {
+        "service": "leave",
+        "secondary": "none",
+        "scope": "day",
+        "date": "2026-09-21",
+        "meal": "lunch",
+        "metric": "all",
+        "leaveView": "balance",
+        "leaveKind": "full"
+      },
+      "component": "LeaveBalanceCard",
+      "latencyMs": 295,
+      "passed": true
+    },
+    {
+      "message": "신청 내역 보여줘",
+      "context": {
+        "service": "leave",
+        "secondary": "none",
+        "scope": "day",
+        "date": "2026-09-21",
+        "meal": "lunch",
+        "metric": "all",
+        "leaveView": "apply",
+        "leaveKind": "full"
+      },
+      "expected": {
+        "service": "leave",
+        "leaveView": "status"
+      },
+      "expectedComponent": "LeaveHistoryCard",
+      "actual": {
+        "service": "leave",
+        "secondary": "none",
+        "scope": "day",
+        "date": "2026-09-21",
+        "meal": "lunch",
+        "metric": "all",
+        "leaveView": "status",
+        "leaveKind": "full"
+      },
+      "component": "LeaveHistoryCard",
+      "latencyMs": 291,
+      "passed": true
+    },
+    {
+      "message": "휴가 신청한 거 취소하고 싶어",
+      "context": {
+        "service": "leave",
+        "secondary": "none",
+        "scope": "day",
+        "date": "2026-09-21",
+        "meal": "lunch",
+        "metric": "all",
+        "leaveView": "balance",
+        "leaveKind": "full"
+      },
+      "expected": {
+        "service": "leave",
+        "leaveView": "status"
+      },
+      "expectedComponent": "LeaveHistoryCard",
+      "actual": {
+        "service": "leave",
+        "secondary": "none",
+        "scope": "day",
+        "date": "2026-09-21",
+        "meal": "lunch",
+        "metric": "all",
+        "leaveView": "status",
+        "leaveKind": "full"
+      },
+      "component": "LeaveHistoryCard",
+      "latencyMs": 299,
+      "passed": true
+    },
+    {
+      "message": "오후 반차 신청할게",
+      "context": {
+        "service": "leave",
+        "secondary": "none",
+        "scope": "day",
+        "date": "2026-09-21",
+        "meal": "lunch",
+        "metric": "all",
+        "leaveView": "balance",
+        "leaveKind": "full"
+      },
+      "expected": {
+        "service": "leave",
+        "leaveView": "apply",
+        "leaveKind": "pm"
+      },
+      "expectedComponent": "LeaveApplicationCard",
+      "actual": {
+        "service": "leave",
+        "secondary": "none",
+        "scope": "day",
+        "date": "2026-09-21",
+        "meal": "lunch",
+        "metric": "all",
+        "leaveView": "apply",
+        "leaveKind": "pm"
+      },
+      "component": "LeaveApplicationCard",
+      "latencyMs": 326,
+      "passed": true
+    },
+    {
+      "message": "오늘 일정",
+      "context": null,
+      "expected": {
+        "service": "schedule",
+        "scope": "day"
+      },
+      "expectedComponent": "ScheduleDayCard",
+      "actual": {
+        "service": "schedule",
+        "secondary": "none",
+        "scope": "day",
+        "date": "2026-09-21",
+        "meal": "lunch",
+        "metric": "all",
+        "leaveView": "apply",
+        "leaveKind": "full"
+      },
+      "component": "ScheduleDayCard",
+      "latencyMs": 279,
+      "passed": true
+    },
+    {
+      "message": "이번 주 전체 일정",
+      "context": null,
+      "expected": {
+        "service": "schedule",
+        "scope": "week"
+      },
+      "expectedComponent": "ScheduleWeekCard",
+      "actual": {
+        "service": "schedule",
+        "secondary": "none",
+        "scope": "week",
+        "date": "2026-09-21",
+        "meal": "lunch",
+        "metric": "all",
+        "leaveView": "apply",
+        "leaveKind": "full"
+      },
+      "component": "ScheduleWeekCard",
+      "latencyMs": 249,
+      "passed": true
+    },
+    {
+      "message": "오늘 날씨",
+      "context": null,
+      "expected": {
+        "service": "weather",
+        "metric": "all"
+      },
+      "expectedComponent": "WeatherOverviewCard",
+      "actual": {
+        "service": "weather",
+        "secondary": "none",
+        "scope": "day",
+        "date": "2026-09-21",
+        "meal": "lunch",
+        "metric": "all",
+        "leaveView": "apply",
+        "leaveKind": "full"
+      },
+      "component": "WeatherOverviewCard",
+      "latencyMs": 330,
+      "passed": true
+    },
+    {
+      "message": "오늘 온도",
+      "context": null,
+      "expected": {
+        "service": "weather",
+        "metric": "temperature"
+      },
+      "expectedComponent": "WeatherMetricCard",
+      "actual": {
+        "service": "weather",
+        "secondary": "none",
+        "scope": "day",
+        "date": "2026-09-21",
+        "meal": "lunch",
+        "metric": "temperature",
+        "leaveView": "apply",
+        "leaveKind": "full"
+      },
+      "component": "WeatherMetricCard",
+      "latencyMs": 282,
+      "passed": true
+    },
+    {
+      "message": "오늘 습도",
+      "context": {
+        "service": "weather",
+        "secondary": "none",
+        "scope": "day",
+        "date": "2026-09-21",
+        "meal": "lunch",
+        "metric": "temperature",
+        "leaveView": "apply",
+        "leaveKind": "full"
+      },
+      "expected": {
+        "service": "weather",
+        "metric": "humidity"
+      },
+      "expectedComponent": "WeatherMetricCard",
+      "actual": {
+        "service": "weather",
+        "secondary": "none",
+        "scope": "day",
+        "date": "2026-09-21",
+        "meal": "lunch",
+        "metric": "humidity",
+        "leaveView": "apply",
+        "leaveKind": "full"
+      },
+      "component": "WeatherMetricCard",
+      "latencyMs": 251,
+      "passed": true
+    },
+    {
+      "message": "습도 말고 온도",
+      "context": {
+        "service": "weather",
+        "secondary": "none",
+        "scope": "day",
+        "date": "2026-09-21",
+        "meal": "lunch",
+        "metric": "humidity",
+        "leaveView": "apply",
+        "leaveKind": "full"
+      },
+      "expected": {
+        "service": "weather",
+        "metric": "temperature"
+      },
+      "expectedComponent": "WeatherMetricCard",
+      "actual": {
+        "service": "weather",
+        "secondary": "none",
+        "scope": "day",
+        "date": "2026-09-21",
+        "meal": "lunch",
+        "metric": "temperature",
+        "leaveView": "apply",
+        "leaveKind": "full"
+      },
+      "component": "WeatherMetricCard",
+      "latencyMs": 318,
+      "passed": true
+    },
+    {
+      "message": "내일은?",
+      "context": {
+        "service": "weather",
+        "secondary": "none",
+        "scope": "day",
+        "date": "2026-09-21",
+        "meal": "lunch",
+        "metric": "humidity",
+        "leaveView": "apply",
+        "leaveKind": "full"
+      },
+      "expected": {
+        "service": "weather",
+        "metric": "humidity"
+      },
+      "expectedComponent": "WeatherMetricCard",
+      "actual": {
+        "service": "weather",
+        "secondary": "none",
+        "scope": "day",
+        "date": "2026-09-22",
+        "meal": "lunch",
+        "metric": "humidity",
+        "leaveView": "apply",
+        "leaveKind": "full"
+      },
+      "component": "WeatherMetricCard",
+      "latencyMs": 252,
+      "passed": true
+    },
+    {
+      "message": "이번 주 날씨",
+      "context": null,
+      "expected": {
+        "service": "weather",
+        "scope": "week",
+        "metric": "all"
+      },
+      "expectedComponent": "WeatherWeekCard",
+      "actual": {
+        "service": "weather",
+        "secondary": "none",
+        "scope": "week",
+        "date": "2026-09-21",
+        "meal": "lunch",
+        "metric": "all",
+        "leaveView": "apply",
+        "leaveKind": "full"
+      },
+      "component": "WeatherWeekCard",
+      "latencyMs": 226,
+      "passed": true
+    },
+    {
+      "message": "내일 회의실 예약",
+      "context": null,
+      "expected": {
+        "service": "rooms"
+      },
+      "expectedComponent": "RoomBookingCard",
+      "actual": {
+        "service": "rooms",
+        "secondary": "none",
+        "scope": "day",
+        "date": "2026-09-22",
+        "meal": "lunch",
+        "metric": "all",
+        "leaveView": "apply",
+        "leaveKind": "full"
+      },
+      "component": "RoomBookingCard",
+      "latencyMs": 268,
+      "passed": true
+    },
+    {
+      "message": "사내 공지 보여줘",
+      "context": null,
+      "expected": {
+        "service": "notices"
+      },
+      "expectedComponent": "NoticeListCard",
+      "actual": {
+        "service": "notices",
+        "secondary": "none",
+        "scope": "day",
+        "date": "2026-09-21",
+        "meal": "lunch",
+        "metric": "all",
+        "leaveView": "apply",
+        "leaveKind": "full"
+      },
+      "component": "NoticeListCard",
+      "latencyMs": 378,
+      "passed": true
+    },
+    {
+      "message": "자바스크립트 Promise 설명해줘",
+      "context": {
+        "service": "leave",
+        "secondary": "none",
+        "scope": "day",
+        "date": "2026-09-21",
+        "meal": "lunch",
+        "metric": "all",
+        "leaveView": "apply",
+        "leaveKind": "full"
+      },
+      "expected": {
+        "service": "llm"
+      },
+      "expectedComponent": "LLMHandoffCard",
+      "actual": {
+        "service": "llm",
+        "secondary": "none",
+        "scope": "day",
+        "date": "2026-09-21",
+        "meal": "lunch",
+        "metric": "all",
+        "leaveView": "apply",
+        "leaveKind": "full"
+      },
+      "component": "LLMHandoffCard",
+      "latencyMs": 246,
+      "passed": true
+    }
+  ]
+}
